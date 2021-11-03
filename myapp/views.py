@@ -12,7 +12,11 @@ def index(request):
         context = {'form': AddVideoForm}
         return render(request, 'index.html', context)
     elif request.method == "POST":
-        form = AddVideoForm(request.POST).save()
+        name = request.POST['name']
+        source = request.POST['source']
+        description = request.POST['description']
+        category = request.POST['category']
+        Video.objects.create(name = name, source = source, descriptions = description,category = category).save()
         return HttpResponseRedirect("?submitted=True")
     elif "submitted" in request.GET:
         return redirect(reverse('myapp:query'))
