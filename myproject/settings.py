@@ -15,7 +15,7 @@ SECRET_KEY = 'u9u1m2_cgy42objvc6x@&twy=jw5vj%glzlohv7aytgl+_f16a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://curvy-sloth-31.loca.lt', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['eduspace-gxp.herokuapp.com/', '127.0.0.1', 'localhost']
 
 
 # Application definition
