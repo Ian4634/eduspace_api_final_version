@@ -1,31 +1,35 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import AddVideoForm
 from django.http import JsonResponse
 from .models import Video
+
+
 # Create your views here.
 
 def index(request):
-    if request.method == 'GET' and not("submitted" in request.GET):
-        context = {'form':AddVideoForm}
+    if request.method == 'GET' and not ("submitted" in request.GET):
+        context = {'form': AddVideoForm}
         return render(request, 'index.html', context)
     elif request.method == "POST":
         form = AddVideoForm(request.POST).save()
         return HttpResponseRedirect("?submitted=True")
     elif "submitted" in request.GET:
-        return HttpResponse("<h1>sent</h1>")
+        return redirect(reverse('myapp:query'))
+
 
 def query(request):
-    retrieve = Video.objects.all() # a list of objects
+    retrieve = Video.objects.all()  # a list of objects
     data = []
     for obj in retrieve:
         data.append({
-            'name' : obj.name,
-            'source' : obj.source,
-            'descriptions' : obj.descriptions
+            'name': obj.name,
+            'source': obj.source,
+            'description': obj.descriptions
         })
 
-    return JsonResponse([{data}])
+    return JsonResponse({"video": data})
+
 
 def delete(request):
     if request.method == "POST":
