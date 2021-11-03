@@ -12,24 +12,26 @@ def index(request):
         context = {'form': AddVideoForm}
         return render(request, 'index.html', context)
     elif request.method == "POST":
-        name = request.POST['name']
         source = request.POST['source']
-        description = request.POST['description']
         category = Category.objects.get(name = request.POST['forma'])
-        Video.objects.create(name = name, source = source, descriptions = description,category = category).save()
+        Video.objects.create( source = source, category = category).save()
         return HttpResponseRedirect("?submitted=True")
     elif "submitted" in request.GET:
         return redirect(reverse('myapp:query'))
 
 
 def query(request):
-    retrieve = Video.objects.all()  # a list of objects
+    goals = Category.objects.all()
     data = []
-    for obj in retrieve:
+    for obj in goals:
+        videos_objs = obj.video_set.all()
+        source = []
+        for videos_obj in videos_objs:
+            source.append(videos_obj.source)
         data.append({
-            'name': obj.name,
-            'source': obj.source,
-            'description': obj.descriptions
+            'name':obj.name,
+            'source':source,
+            'description':''
         })
 
     return JsonResponse({"video": data})

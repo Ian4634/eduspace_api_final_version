@@ -7,9 +7,9 @@
 </h1>
 <form method="POST" action='{% url "myapp:index" %}' class="mt-5 ml-2 flex flex-col items-center w-96" >
     {% csrf_token%}
-        <input type='text' placeholder="Name..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='name'>
-        <input type='url' placeholder="Source..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='source'>
-        <input type='text' placeholder="Description..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='description'>
+        <!--<input type='text' placeholder="Name..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='name'>-->
+        <input type='text' placeholder="Source..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='source'>
+        <!--<input type='text' placeholder="Description..." class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" name='description'>-->
         <select name="forma" class="rounded-lg p-2 px-3 bg-gray-800 m-2 w-full" >
             <option value="No Poverty">No Poverty</option>
             <option value="No Hunger">No Hunger</option>
