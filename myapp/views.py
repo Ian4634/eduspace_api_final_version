@@ -30,7 +30,6 @@ def query(request):
 
     return JsonResponse({"video": data})
 
-
 def delete(request):
     if request.method == "POST":
         name = request.POST['name']
