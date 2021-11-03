@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import AddVideoForm
 from django.http import JsonResponse
-from .models import Video
+from .models import Video, Category
 
 
 # Create your views here.
@@ -15,7 +15,7 @@ def index(request):
         name = request.POST['name']
         source = request.POST['source']
         description = request.POST['description']
-        category = request.POST['category']
+        category = Category.objects.get(name = request.POST['forma'])
         Video.objects.create(name = name, source = source, descriptions = description,category = category).save()
         return HttpResponseRedirect("?submitted=True")
     elif "submitted" in request.GET:
