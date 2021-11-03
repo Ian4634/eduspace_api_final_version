@@ -15,7 +15,7 @@ SECRET_KEY = 'u9u1m2_cgy42objvc6x@&twy=jw5vj%glzlohv7aytgl+_f16a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eduspace-gxp.herokuapp.com/', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['edu-space.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -45,6 +45,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
    'http://localhost:3000',
    'http://127.0.0.1:3000',
+   'edu-space.vercel.app'
 )
 
 ROOT_URLCONF = 'myproject.urls'
