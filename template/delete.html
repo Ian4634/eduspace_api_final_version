@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block content %}
+<style>
+    .content1{
+        display: flexbox;
+        background-color:antiquewhite;
+        justify-content:center
+    }
+    .title{
+        justify-content:center
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="content1 col-12">
+            <form method = 'POST' action="{% url 'myapp:delete' %}">
+                {% csrf_token %}
+                <label>name</label>
+                <input type = 'text' name = 'name'>
+                    <button class = 'btn btn-primary' type = 'submit'>delete</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
