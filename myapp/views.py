@@ -39,10 +39,9 @@ def query(request):
 
 def delete(request):
     if request.method == "POST":
-        name = request.POST['name']
-        objs = Video.objects.filter(name=name)
-        for obj in objs:
-            obj.delete()
+        position = request.POST['position']
+        category = Category.objects.get(name = request.POST['forma'])
+        video = Video.objects.get(category = category, position = position).delete()
         return redirect(reverse("myapp:query"))
     else:
         return render(request, 'delete.html', )
