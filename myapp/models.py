@@ -11,3 +11,5 @@ class Video(models.Model):
     source = models.CharField(max_length = 500, blank = True)
     
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+
+    position = models.CharField(max_length = 100)
