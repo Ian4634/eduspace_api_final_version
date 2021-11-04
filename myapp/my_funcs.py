@@ -23,7 +23,26 @@ def move_forward(videos, original, new):
     
 
 def move_backward(videos, original, new):
-    pass
+    new = int(new)
+    original = int(original)
+    # videos is a list of Video objects
+    affected_videos = []
+    for video in videos:
+        if int(video.position) >= original and int(video.position) <= new:
+            affected_videos.append(video)
+        else:
+            continue
+    # actual works
+    count = 0
+    print(affected_videos)
+    for video in affected_videos:
+        if count == 0: 
+            video.position = new
+            video.save()
+            count += 1
+        else:
+            video.position = int(video.position) - 1
+            video.save()
 
 def move(videos, original, new):
     if original > new:
