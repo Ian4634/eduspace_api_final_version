@@ -14,7 +14,7 @@ def index(request):
     elif request.method == "POST":
         source = request.POST['source']
         category = Category.objects.get(name = request.POST['forma'])
-        position = len(Category.objects.all())
+        position = len(Video.objects.filter(category = category))
         Video.objects.create( source = source, category = category, position = position).save()
         return HttpResponseRedirect("?submitted=True")
     elif "submitted" in request.GET:
@@ -25,7 +25,7 @@ def query(request):
     goals = Category.objects.all()
     data = []
     for obj in goals:
-        videos_objs = obj.video_set.all()
+        videos_objs = obj.video_set.all().order_by('position')
         source = []
         for videos_obj in videos_objs:
             source.append(videos_obj.source)
@@ -53,7 +53,7 @@ def edit(request):
 
     elif request.method == "POST":
         category = Category.objects.get(name = request.POST['forma'])
-        videos = Video.objects.filter(category=category)
+        videos = Video.objects.filter(category=category).order_by('position')
         
         # rearrange order 
         original_position = request.POST['original_position']
