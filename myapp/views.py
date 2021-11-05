@@ -42,6 +42,14 @@ def delete(request):
         position = request.POST['position']
         category = Category.objects.get(name = request.POST['forma'])
         video = Video.objects.get(category = category, position = position).delete()
+
+        # move forward all objs after the one deleted
+        videos = Video.objects.filter(category = category)
+        affected_video = videos[position:]
+
+        for vid in affected_video:
+            vid.position = int(vid.position) - 1
+            vid.save()
         return redirect(reverse("myapp:query"))
     else:
         return render(request, 'delete.html', )
