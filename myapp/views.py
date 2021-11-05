@@ -45,7 +45,7 @@ def delete(request):
 
         # move forward all objs after the one deleted
         videos = Video.objects.filter(category = category)
-        affected_video = videos[position:]
+        affected_video = videos[int(position):]
 
         for vid in affected_video:
             vid.position = int(vid.position) - 1
