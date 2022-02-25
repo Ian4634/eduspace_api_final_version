@@ -45,7 +45,8 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
    'http://localhost:3000',
    'http://127.0.0.1:3000',
-   'https://eduspace-gxp.vercel.app'
+   'https://eduspace-gxp.vercel.app',
+    'https://eduspace.lalit.co.za/'
 )
 
 ROOT_URLCONF = 'myproject.urls'
